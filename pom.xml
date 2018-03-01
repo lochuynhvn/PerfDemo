@@ -22,6 +22,22 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+        <id>blaze</id>
+        <activation>
+            <property>
+				<name>env</name>
+				<value>blaze</value>
+			</property>
+        </activation>
+        <properties>
+            <scenario_name>Blaze_Demo.jmx</scenario_name>
+        </properties>
+    </profile>
+</profiles>
+
   <build>
     	<plugins>
         	<plugin>
@@ -36,6 +52,11 @@
                     	</goals>
                 	</execution>
             	</executions>
+				<configuration>
+					<testFilesExcluded>
+						<excludeJMeterTestFile>${scenario_name}</excludeJMeterTestFile>
+					</testFilesExcluded>
+				</configuration>
         	</plugin>
         	
         	<plugin>
