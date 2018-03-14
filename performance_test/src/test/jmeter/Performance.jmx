@@ -44,7 +44,7 @@
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
           <boolProp name="resetInterpreter">false</boolProp>
-          <stringProp name="script">import com.example.Currency;
+          <stringProp name="script">import com.seibels.jmeter.Currency;
 
 Currency currency = new Currency();
 int limit = currency.getLimit();
