@@ -17,7 +17,7 @@
   <repositories>
       <repository>
          <id>localrepository</id>
-         <url>file://${basedir}/repo</url>
+         <url>file://${basedir}/src/libs</url>
       </repository>
    </repositories>
 
@@ -61,7 +61,7 @@
             	</executions>
 				<configuration>
 					<testPlanLibraries>
-                             			<artifact>com.example.Currency</artifact>			     			
+                             			<artifact>Limitation</artifact>			     			
 		        		</testPlanLibraries>
 					<testFilesExcluded>
 						<excludeJMeterTestFile>${scenario_name}</excludeJMeterTestFile>
