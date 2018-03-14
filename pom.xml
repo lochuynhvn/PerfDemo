@@ -53,6 +53,9 @@
                 	</execution>
             	</executions>
 				<configuration>
+					<testPlanLibraries>
+                             			<artifact>com.example.Currency</artifact>			     			
+		        		</testPlanLibraries>
 					<testFilesExcluded>
 						<excludeJMeterTestFile>${scenario_name}</excludeJMeterTestFile>
 					</testFilesExcluded>
