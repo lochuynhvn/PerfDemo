@@ -13,14 +13,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-	
-  <repositories>
-      <repository>
-         <id>localrepository</id>
-         <url>file://${basedir}/src/libs</url>
-      </repository>
-   </repositories>
-
+ 
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -50,7 +43,7 @@
         	<plugin>
             	<groupId>com.lazerycode.jmeter</groupId>
             	<artifactId>jmeter-maven-plugin</artifactId>
-            	<version>2.1.0</version>
+            	<version>2.7.0</version>
             	<executions>
                 	<execution>
                     	<id>jmeter-tests</id>
@@ -61,8 +54,8 @@
             	</executions>
 				<configuration>
 					<testPlanLibraries>
-                             			<artifact>Limitation</artifact>			     			
-		        		</testPlanLibraries>
+                             <artifact>com.seibels:jmeter:0.0.1</artifact>
+		        	</testPlanLibraries>
 					<testFilesExcluded>
 						<excludeJMeterTestFile>${scenario_name}</excludeJMeterTestFile>
 					</testFilesExcluded>
