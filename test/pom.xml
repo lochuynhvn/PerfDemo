@@ -44,21 +44,10 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.0.2</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<configuration>
-					<mainClass>ShowFile</mainClass>
-				</configuration>
-			</plugin>
+			<directory>target</directory>
+			<outputDirectory>target/classes</outputDirectory>
+			<finalName>${project.artifactId}-${project.version}</finalName>
+			<sourceDirectory>src/test/execution</sourceDirectory>
 			<plugin>
 				<groupId>com.lazerycode.jmeter</groupId>
 				<artifactId>jmeter-maven-plugin</artifactId>
