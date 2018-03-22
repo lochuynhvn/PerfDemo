@@ -28,7 +28,7 @@ public class ShowFile {
         
         for(Path p : listOfFile)
         {
-        	gdrive.uploadFileToGoole(gdrive.getDriveService(), xpath + "/"+ p.toString());
+        	gdrive.uploadFileToGooleFolder("Performance Result", gdrive.getDriveService(), xpath + "/"+ p.toString());
         } 
 	}
 
