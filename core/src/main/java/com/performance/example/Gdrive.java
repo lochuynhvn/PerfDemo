@@ -131,6 +131,31 @@ public class Gdrive {
     	System.out.println("File ID: " + file.getId());
     	return true;
     }
+public static boolean uploadFileToGooleFolder(String folderName, Drive service, String fileAddress) throws IOException {
+		String folderId = null;
+		FileList result = service.files().list()
+		      .setQ("mimeType='application/vnd.google-apps.folder' and name = '"+ folderName+"'")		      
+		      .execute();
+		
+		for (File f : result.getFiles())
+		{
+			folderId = f.getId();
+			break;
+		}
+	
+    	File fileMetadata = new File();
+    	fileMetadata.setName("My Report");
+    	fileMetadata.setMimeType("application/vnd.google-apps.spreadsheet");
+    	fileMetadata.setParents(Collections.singletonList(folderId));
+
+    	java.io.File filePath = new java.io.File(fileAddress);
+    	FileContent mediaContent = new FileContent("text/csv", filePath);
+    	File file = service.files().create(fileMetadata, mediaContent)
+    	        .setFields("id")
+    	        .execute();
+    	System.out.println("File ID: " + file.getId());
+    	return true;
+    }
     
 public static void showFile(Drive service) throws IOException {
     	
