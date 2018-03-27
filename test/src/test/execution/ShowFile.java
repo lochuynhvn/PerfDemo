@@ -34,11 +34,8 @@ public class ShowFile {
         {
         	String url = xpath + "/"+ p.toString();
         	file = new File(url);
-   		 	String[] lines = File_Interact.getContentOfFile(file);
-   		 	System.out.println(System.getProperty("env"));
-   		 	System.out.println("Chieu dai của mang: "+lines.length);
-   		 	File_Interact.writeFile(file, lines, "ID", ","+"12");
-   		 System.out.println("DKMMMMM");
+   		String[] lines = File_Interact.getContentOfFile(file);   		 	
+   		File_Interact.writeFile(file, lines, "ID", ","+ System.getProperty("env"));   		 
         	gdrive.uploadFileToGooleFolder("Performance Result", gdrive.getDriveService(), xpath + "/"+ p.toString());
         } 
 	}
