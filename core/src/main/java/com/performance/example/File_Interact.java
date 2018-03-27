@@ -89,8 +89,7 @@ public class File_Interact {
         	}
         	else {
         	oldContent[count] = oldContent[count].concat(value);        	            
-        	}
-        	System.out.println("Gia tri phan tu thu "+ count + ": "+oldContent[count]);
+        	}        	
         	output.write(oldContent[count]);
             if(count != oldContent.length-1) {// This makes sure that an extra new line is not inserted at the end of the file
                 output.newLine();
