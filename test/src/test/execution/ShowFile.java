@@ -31,7 +31,7 @@ public class ShowFile {
         	file = new File(url);
    		String[] lines = File_Interact.getContentOfFile(file);
    		File_Interact.writeFile(file, lines, "ID", ","+ System.getProperty("env"));
-   		Gdrive.uploadFileToGooleFolder("Performance Result", Gdrive.getDriveService(), xpath + "/"+ p.toString());
+   		Gdrive.uploadFileToGooleFolder("Performance Result", xpath + "/"+ p.toString());
         } 
 	}
 
