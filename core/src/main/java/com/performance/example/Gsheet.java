@@ -18,7 +18,6 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
-import com.google.api.services.drive.Drive;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.ValueRange;
@@ -169,21 +168,6 @@ public class Gsheet {
 		List<List<Object>> data = new ArrayList<List<Object>>();
 		data.add(data1);
 		return data;
-	}
-
-	public void getRowContext(){
-		try {
-			ValueRange response = service.spreadsheets().values().get("", "").execute();
-			
-			for(List row : response.getValues())
-			{
-				
-			}
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	public void uploadData(String spreadsheetId, String sheetName, String range) {
