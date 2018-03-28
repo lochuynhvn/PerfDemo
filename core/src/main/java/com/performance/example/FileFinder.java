@@ -15,66 +15,76 @@ import java.util.List;
 import static java.nio.file.FileVisitResult.CONTINUE;
 
 public class FileFinder extends SimpleFileVisitor<Path> {
-	 
-    private final PathMatcher matcher;
-    private List<Path> matchedPaths = new ArrayList<Path>();
-    
-    public FileFinder(String pattern) {
-        matcher = FileSystems.getDefault()
-                .getPathMatcher("glob:" + pattern);
-    }
- 
-    // Compares the glob pattern against
-    // the file or directory name.
-    void match(Path file) {
-        Path name = file.getFileName();
- 
-        if (name != null && matcher.matches(name)) {
-            matchedPaths.add(name);
-        }
-    }
- 
-    // Invoke the pattern matching
-    // method on each file.
-    @Override
-    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-        match(file);
-        return CONTINUE;
-    }
- 
-    // Invoke the pattern matching
-    // method on each directory.
-    @Override
-    public FileVisitResult preVisitDirectory(Path dir,
-            BasicFileAttributes attrs) {
-        match(dir);
-        return CONTINUE;
-    }
- 
-    @Override
-    public FileVisitResult visitFileFailed(Path file, IOException exc) {
-        System.err.println(exc);
-        return CONTINUE;
-    }
- 
-    public int getTotalMatches() {
-        return matchedPaths.size();
-    }
- 
-    public Collection<Path> getMatchedPaths() {
-        return matchedPaths;
-    }
-    
-    public List<Path> getFileName(String path, FileFinder finder) throws IOException{
-    	List<Path> listOfFile = new ArrayList<Path>();
-    	Files.walkFileTree(Paths.get(path), finder);
-    	Collection<Path> matchedFiles = getMatchedPaths();
-		
-		for (Path p: matchedFiles)
-		{
+
+	private final PathMatcher matcher;
+	private List<Path> matchedPaths = new ArrayList<Path>();
+
+	/***
+	 * Constructor
+	 * 
+	 * @param pattern
+	 */
+	public FileFinder(String pattern) {
+		matcher = FileSystems.getDefault().getPathMatcher("glob:" + pattern);
+	}
+
+	// Compares the glob pattern against
+	// the file or directory name.
+	void match(Path file) {
+		Path name = file.getFileName();
+
+		if (name != null && matcher.matches(name)) {
+			matchedPaths.add(name);
+		}
+	}
+
+	// Invoke the pattern matching
+	// method on each file.
+	@Override
+	public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
+		match(file);
+		return CONTINUE;
+	}
+
+	// Invoke the pattern matching
+	// method on each directory.
+	@Override
+	public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) {
+		match(dir);
+		return CONTINUE;
+	}
+
+	@Override
+	public FileVisitResult visitFileFailed(Path file, IOException exc) {
+		System.err.println(exc);
+		return CONTINUE;
+	}
+
+	public int getTotalMatches() {
+		return matchedPaths.size();
+	}
+
+	public Collection<Path> getMatchedPaths() {
+		return matchedPaths;
+	}
+
+	/***
+	 * Return list of file under path
+	 * 
+	 * @param path
+	 * @param finder
+	 * @return
+	 * @throws IOException
+	 */
+	public List<Path> getFileName(String path, FileFinder finder) throws IOException {
+		List<Path> listOfFile = new ArrayList<Path>();
+		Files.walkFileTree(Paths.get(path), finder);
+		Collection<Path> matchedFiles = getMatchedPaths();
+
+		for (Path p : matchedFiles) {
 			listOfFile.add(p);
 		}
-		
+
 		return listOfFile;
-    }
+	}
 }

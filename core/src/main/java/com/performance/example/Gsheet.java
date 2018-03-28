@@ -83,8 +83,8 @@ public class Gsheet {
 	public static Credential authorize() throws IOException {
 		// Load client secrets.
 		String path = System.getProperty("user.dir");
-        InputStream in = new FileInputStream(path +"/src/main/resource/client_secret.json");
-		//InputStream in = Gsheet.class.getResourceAsStream("/client_secret.json");
+		InputStream in = new FileInputStream(path + "/src/main/resource/client_secret.json");
+		// InputStream in = Gsheet.class.getResourceAsStream("/client_secret.json");
 		GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 
 		// Build flow and trigger user authorization request.
@@ -129,18 +129,33 @@ public class Gsheet {
 		}
 		return null;
 	}
-
-	public void setData(String spreadsheetId, String sheetName, String range, List<List<Object>> data) throws IOException {
+	
+	/***
+	 * Set value of data following range
+	 * @param spreadsheetId
+	 * @param sheetName
+	 * @param range
+	 * @param data
+	 * @throws IOException
+	 */
+	public void setData(String spreadsheetId, String sheetName, String range, List<List<Object>> data)
+			throws IOException {
 
 		range = sheetName + "!" + range;
 		// service.spreadsheets().values().append(spreadsheetId, range,
 		// value).setValueInputOption("RAW").execute();
 		ValueRange value = new ValueRange();
 		value.setValues(data);
-		
+
 		service.spreadsheets().values().update(spreadsheetId, range, value).setValueInputOption("RAW").execute();
 	}
-
+	
+	/***
+	 * Show data(in range) of sheet based on spread sheet id
+	 * @param spreadsheetId
+	 * @param sheetName
+	 * @param range
+	 */
 	public void showData(String spreadsheetId, String sheetName, String range) {
 		List<List<Object>> data = null;
 		try {
@@ -169,7 +184,7 @@ public class Gsheet {
 		data.add(data1);
 		return data;
 	}
-	
+
 	public void uploadData(String spreadsheetId, String sheetName, String range) {
 		List<List<Object>> data = null;
 		try {
@@ -189,14 +204,14 @@ public class Gsheet {
 				System.out.printf("%s - %s \n", row.get(0), row.get(1));
 			}
 		}
-	}	
-	
+	}
+
 	public static void main(String[] args) throws IOException {
 		Gsheet obj = new Gsheet(APPLICATION_NAME);
 		obj.showData(spreadsheetId, "Sheet1", "A1:D");
-		
-		//gg.setData(spreadsheetId, "Example", "A2:A2",GoogleAPI.toArraryOfArray("Chỉnh sửa"));
-		
+
+		// gg.setData(spreadsheetId, "Example", "A2:A2",GoogleAPI.toArraryOfArray("Chỉnh
+		// sửa"));
+
 	}
 }
-
