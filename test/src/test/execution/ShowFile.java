@@ -24,19 +24,14 @@ public class ShowFile {
     	xpath = path.getParent().toString()+ CONSTANT.resultPath;
     	
     	FileFinder finder = new FileFinder("*.csv");
-    	listOfFile = finder.getFileName(xpath.toString(), finder);
-    	
-    	
-    	
-    	Gdrive gdrive = new Gdrive();       
-        
+    	listOfFile = finder.getFileName(xpath.toString(), finder);        
         for(Path p : listOfFile)
         {
         	String url = xpath + "/"+ p.toString();
         	file = new File(url);
-   		String[] lines = File_Interact.getContentOfFile(file);   		 	
-   		File_Interact.writeFile(file, lines, "ID", ","+ System.getProperty("env"));   		 
-        	gdrive.uploadFileToGooleFolder("Performance Result", gdrive.getDriveService(), xpath + "/"+ p.toString());
+   		String[] lines = File_Interact.getContentOfFile(file);
+   		File_Interact.writeFile(file, lines, "ID", ","+ System.getProperty("env"));
+   		Gdrive.uploadFileToGooleFolder("Performance Result", Gdrive.getDriveService(), xpath + "/"+ p.toString());
         } 
 	}
 

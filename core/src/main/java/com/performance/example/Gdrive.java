@@ -23,7 +23,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -38,7 +37,6 @@ public class Gdrive {
 	/**
 	 * Service of GDrive
 	 */
-	private static Drive drive;
 	
     /** Application name. */
     private static final String APPLICATION_NAME =
